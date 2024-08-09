@@ -8,7 +8,7 @@
 }
 @font-face {
     font-family: 'HARNGTON';
-    src: url('assets/fontes/HARNGTON.TTF') format('truetype');
+    src: url('../../public/assets/fontes/HARNGTON.TTF') format('truetype');
 }
 
 .grand-hotel-regular {
@@ -39,7 +39,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('assets/cozy-little-place-in-the-forest-thumb.jpg');
+    background-image: url('../../public/assets/cozy-little-place-in-the-forest-thumb.jpg');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;

@@ -17,7 +17,7 @@ export default class Hero extends Circle{
 		
 		this.cellHeight= 177
 		this.cellX = 0
-		this.totalSprites = 3
+		this.totalSprites = 4
 		this.spriteSpeed = 1
 		console.log('H:'+this.cellHeight)
 		
@@ -69,16 +69,19 @@ export default class Hero extends Circle{
 			's':'down',
 			'w':'up',
 			'a':'left',
-			'd':'right'
+			'd':'right',
+			'':'stopped'
 		}
 	}
 
 	setCellY(){
 		let sprites = {
 			'down': 0,
-			'up': 3,
-			'left': 4,
-			'right':2
+			'up': 2,
+			'left': 3,
+			'right':1,
+			'stopped':4,
+			'outro':4
 		}
 
 		this.cellY = sprites[this.status]
@@ -93,10 +96,15 @@ export default class Hero extends Circle{
 			},
 			'up': 	{ x: this.x, y: this.y - this.speed },
 			'left': { x: this.x - this.speed, y: this.y },
-			'right': { x: this.x + this.speed, y: this.y }
+			'right': { x: this.x + this.speed, y: this.y },
+			'stopeed': {x:this.x, y:this.y}
 		}
 
 		this.status = this.controls[key] ? this.controls[key] : this.status
+
+		// if(!stopped==true){
+			
+		// }
 
 		this.x = movements[this.status].x
 		this.y = movements[this.status].y

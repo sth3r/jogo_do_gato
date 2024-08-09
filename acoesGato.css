@@ -120,7 +120,7 @@
 
     .gato-right{
         background-image: url('assets/sprites/cato/gato1.png');
-        background-size: 522.88px 808.38px; /*tamanho do  background */
+        background-size:522.88 px 808.38px; /*tamanho do  background */
         width: var(--lado); /*tamanho da caixa visivel */
         height: 93.77px; /*tamanho da caixa visivel */
         background-repeat: no-repeat;
