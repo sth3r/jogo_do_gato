@@ -1,0 +1,154 @@
+
+
+/*----------------------------GATO DORMINDO----------------------------*/
+
+    .gato-seepy{
+        background-image: url('assets/sprites/cato/gato1.png');
+        background-size: 522.88px 808.38px; 
+        width: var(--mimindo);
+        height: 90.77px; 
+        background-repeat: no-repeat;
+        background-clip: content-box;
+        background-position: 720px 0px;
+        animation-name: gato-mimino;
+        animation-duration:2400ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: step-end; 
+        animation-delay: 0s;
+        /* border: solid 2px yellow; */
+        visibility: hidden;
+        position: absolute;
+        bottom: var(--altura);
+        right: 0px;
+        }
+
+    @keyframes gato-mimino{
+        0%,100%{background-position: 0px -720px;visibility: visible;} 
+        50%{background-position: -138.29px -720px;visibility: visible;}
+    } 
+
+/*----------------------------GATO SUBINDO----------------------------*/
+
+    .gato-up{
+        background-image: url('assets/sprites/cato/gato1.png');
+        background-size: 522.88px 808.38px; 
+        width: var(--frente);
+        height: 93.77px; 
+        background-repeat: no-repeat;
+        background-clip: content-box;
+        background-position: 288px 0px;
+        animation-name: gato-subino;
+        animation-duration:2000ms;
+        /* animation-iteration-count: infinite; */
+        animation-timing-function: step-end;
+        animation-delay: 0s;
+        /* border: solid 2px yellow; */
+        visibility: hidden;
+        position: absolute;
+        bottom: var(--altura);
+        right: 0px;
+        }
+
+    @keyframes gato-subino{
+        0%,100%{background-position: 0px -288px;transform: translateY(108px); visibility: visible;} 
+        25%{background-position: -138.29px -288px;transform: translateY(54px); visibility: visible;}
+        50%{background-position: -276.58px -288px;transform: translateY(27px); visibility: visible;}
+        75%{background-position: -414.87px -288px;transform: translateY(0px); visibility: visible;}
+    } 
+
+/*----------------------------GATO DESCENDO----------------------------*/
+
+    .gato-down{
+        background-image: url('assets/sprites/cato/gato1.png');
+        background-size: 522.88px 808.38px; 
+        width: var(--frente);
+        height: 93.77px; 
+        background-repeat: no-repeat;
+        background-clip: content-box;
+        background-position: 0px 0px;
+        animation-name: gato-descendo;
+        animation-duration:1500ms;
+        /* animation-iteration-count: infinite; */
+        animation-timing-function: step-end;
+        animation-delay: 4s;
+        /* border: solid 2px red; */
+        visibility: hidden;
+        text-align: start;
+        position: absolute;
+        bottom: var(--altura);
+        left: 0px;
+    } 
+
+    @keyframes gato-descendo{
+        0%,100%{background-position: 0px 0px;transform: translateY(0px); visibility: visible;} 
+        25%{background-position: -138.29px 0px;transform: translateY(27px); visibility: visible;}
+        50%{background-position: -276.58px 0px;transform: translateY(54px); visibility: visible;}
+        75%{background-position: -414.87px 0px;transform: translateY(108px); visibility: visible;}
+    } 
+
+/*----------------------------GATO INDO ESQUERDA----------------------------*/
+
+    .gato-left{
+        background-image: url('assets/sprites/cato/gato1.png');
+        background-size: 522.88px 808.38px; 
+        width: var(--lado); 
+        height: 93.77px; 
+        background-repeat: no-repeat;
+        background-clip: content-box;  
+        background-position: 429px 0px;
+        animation-name: gato-esqueurda;
+        animation-duration:2000ms;
+        /* animation-iteration-count: infinite; */
+        animation-timing-function: step-end;
+        animation-delay: 2s;
+        /* border: solid 2px blue; */
+        visibility: hidden;
+        position: absolute;
+        bottom: var(--altura);
+        left: 0px;
+
+    }
+
+    @keyframes gato-esqueurda{
+        0%,100%{background-position: 0px -429px;transform: translateX(108px); visibility: visible;} 
+        25%{background-position: -138.29px -429px;transform: translateX(54px); visibility: visible;}
+        50%{background-position: -276.58px -429px;transform: translateX(27px); visibility: visible;}
+        75%{background-position: -414.87px -429px;transform: translateX(0px);  visibility: visible;}
+    } 
+
+/*----------------------------GATO INDO DIREITA----------------------------*/
+
+    .gato-right{
+        background-image: url('assets/sprites/cato/gato1.png');
+        background-size: 522.88px 808.38px; /*tamanho do  background */
+        width: var(--lado); /*tamanho da caixa visivel */
+        height: 93.77px; /*tamanho da caixa visivel */
+        background-repeat: no-repeat;
+        background-clip: content-box;  /*tá cortando o tamanho da caixa do background*/
+        background-position: 144px 0px;
+        animation-name: gato-direita;
+        animation-duration:2000ms;
+        /* animation-iteration-count: infinite; */
+        animation-timing-function: step-end;
+        animation-delay: 6s;
+        /* border: solid 2px green; */
+        visibility: hidden;
+        position: absolute;
+        top: var(--altura);
+        left: 0px;
+    }
+
+    @keyframes gato-direita{
+        0%,100%{background-position: 0px -144px;transform: translateX(0px); visibility: visible;} 
+        25%{background-position: -138.29px -144px;transform: translateX(27px); visibility: visible;}
+        50%{background-position: -276.58px -144px;transform: translateX(54px); visibility: visible;}
+        75%{background-position: -414.87px -144px;transform: translateX(108px); visibility: visible;}
+    } 
+
+
+:root{
+    --lado: 95px;
+    --frente: 75px;
+    --altura: 106px;
+    --mimindo: 100px;
+}

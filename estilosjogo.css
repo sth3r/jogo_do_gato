@@ -1,0 +1,37 @@
+*{
+    padding:0;
+    margin:0;
+    text-decoration: none;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('assets/cozy-little-place-in-the-forest-thumb.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+canvas {
+    /* border: 1px solid black; */
+    background-color: rgba(220, 220, 220, 0.201);
+    border-radius: 50px;
+    box-shadow: 10px 5px 5px rgba(183, 204, 252, 0.137);
+    margin-top: 10px;
+}
+
+a{
+    position: absolute;
+    background-color: #cb9742;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    /* border: none; */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(22, 53, 22);
+    box-shadow: #cb9742;
+}

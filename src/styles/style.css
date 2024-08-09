@@ -1,0 +1,146 @@
+*{
+    padding:0;
+    margin:0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0;
+    text-decoration: none;
+}
+@font-face {
+    font-family: 'HARNGTON';
+    src: url('assets/fontes/HARNGTON.TTF') format('truetype');
+}
+
+.grand-hotel-regular {
+    font-family: "Grand Hotel", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .sacramento-regular {
+    font-family: "Sacramento", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+h1{
+    font-family: 'Sacramento';
+    /* font-family: 'Grand Hotel'; */
+    /* font-family: 'HARNGTON'; */
+    font-size: 70px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    color: rgb(38, 80, 38);
+    text-shadow: 2px 2px rgba(88, 161, 88, 0.5);
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('assets/cozy-little-place-in-the-forest-thumb.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.caixa{
+    background-color: rgba(220, 220, 220, 0.201);
+    border-radius: 50px;
+    width: 450px;
+    height: 600px;
+    box-shadow: 10px 5px 5px rgba(183, 204, 252, 0.137);
+    margin-top: 10px;
+    clip-path: polygon(0% 0, 120% 0%, 120% 120%, 0% 120%);
+}
+
+.refelxo1 {
+    height: 20px;
+    transform: rotate(45deg); 
+    background-color: rgba(255, 255, 255, 0.086);
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgba(255, 255, 255, 0.086);
+    position: relative;
+    top: 15%;
+    left: 20%;
+}
+
+.refelxo2 {
+    height: 20px;
+    transform: rotate(45deg); 
+    background-color: rgba(255, 255, 255, 0.086);
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgba(255, 255, 255, 0.086);
+    position: relative;
+    top: 15%;
+    left: 20%;
+}
+.refelxo3 {
+    height: 15px;
+    transform: rotate(45deg); 
+    background-color: rgba(255, 255, 255, 0.086);
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgba(255, 255, 255, 0.086);
+    position: relative;
+    top: 55%;
+    left: 20%;
+}
+.refelxo4 {
+    height: 20px;
+    transform: rotate(45deg); 
+    background-color: rgba(255, 255, 255, 0.086);
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px rgba(255, 255, 255, 0.086);
+    position: relative;
+    top: 55%;
+    left: 20%;
+}
+
+.container{
+    /* width: 50px;
+    height: 50px; */
+    /* border: 5px double rgb(161, 87, 217); */
+    /* background-color: brown; */
+    position: absolute;
+    top: 75%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+
+section{
+    /* background-color: yellowgreen; */
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Grand Hotel';
+    font-size: 30px;
+    margin: 1px;
+    color: rgb(73, 73, 73);
+    text-shadow: 1px 1px rgba(167, 166, 98, 0.7);
+    text-align: center;
+}
+
+a{
+    position: absolute;
+    background-color: #cb9742;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    /* border: none; */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(22, 53, 22);
+    box-shadow: #cb9742;
+}
+
+h1:hover, section p:hover, .container:hover{
+    text-shadow: 0 0 15px #f4fa85;
+}
+
+a:hover{
+    background-color:#f6ff48;
+}

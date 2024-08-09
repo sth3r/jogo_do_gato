@@ -1,0 +1,10 @@
+se ficar parado mt tempo ele dorme
+
+fazer um array em js pra trocar a imagem do gato
+
+créditos:
+https://pixivan.itch.io/top-down-forest-tileset
+https://caz-creates-games.itch.io/red-shroom
+https://melloinc.itch.io/casual-frog-traveler
+https://caz-creates-games.itch.io/cute-chicken-character-sprite
+https://www.google.com/search?q=forest+image+cozy+&client=opera-gx&hs=1ZB&sca_esv=a7fc81d4641f5242&sca_upv=1&udm=2&biw=1325&bih=627&sxsrf=ADLYWIK1AElk_IP5dgrEUGCXnaOPmVtCdQ%3A1720755286601&ei=VqSQZuKyJLvd5OUP1tG46AY&ved=0ahUKEwjiten8yKCHAxW7LrkGHdYoDm0Q4dUDCBA&uact=5&oq=forest+image+cozy+&gs_lp=Egxnd3Mtd2l6LXNlcnAiEmZvcmVzdCBpbWFnZSBjb3p5IEiCCFCrBVirBXABeACQAQCYAQCgAQCqAQC4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgBwA&sclient=gws-wiz-serp#vhid=vQany_25RcujvM&vssid=mosaic
