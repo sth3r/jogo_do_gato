@@ -1,14 +1,19 @@
 import Circle from "./geometries/Circle";
 
 export default class Enemy extends Circle{
-	constructor(x, y, size, speed = 10, color = "#00f") {
-		super(x,y,size,speed,color)
+	constructor(x, y, size, color = "#00f") {
+		super(x,y,size,color)
 		this.line = 1
 		// console.log('enemy',this) 
 	}
+	// constructor(x, y, size, speed = 10, color = "#00f") {
+	// 	super(x,y,size,speed,color)
+	// 	this.line = 1
+	// 	// console.log('enemy',this) 
+	// }
 
 	move(limits){
-		this.y +=this.speed
+		// this.y +=this.speed
 		this.limits(limits)
 	}
 
