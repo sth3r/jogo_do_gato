@@ -10,12 +10,12 @@ export default class Hero extends Circle{
 		this.imgUrl = imgUrl
 		loadImage(this.imgUrl).then(img=>{
 			this.img = img
-			this.cellWidth = img.naturalWidth/this.totalSprites+3.5
+			this.cellWidth = img.naturalWidth/this.totalSprites
 			console.log('W:'+this.cellWidth)
 		})
 
 		
-		this.cellHeight= 177
+		this.cellHeight= 142 //altura da sprite/gato maior
 		this.cellX = 0
 		this.totalSprites = 4
 		this.spriteSpeed = 1
@@ -25,7 +25,7 @@ export default class Hero extends Circle{
 		this.width = width
 		this.height = height
 
-		this.status = 'right'
+		this.status = 'up'
 
 		this.hit = new Circle(
 			this.x + this.width/2,
@@ -66,11 +66,10 @@ export default class Hero extends Circle{
 
 	setControls(){
 		this.controls = {
-			's':'down',
-			'w':'up',
-			'a':'left',
-			'd':'right',
-			'':'stopped'
+			'ArrowDown':'down',
+			'ArrowUp':'up',
+			'ArrowLeft':'left',
+			'ArrowRight':'right',
 		}
 	}
 
@@ -81,7 +80,7 @@ export default class Hero extends Circle{
 			'left': 3,
 			'right':1,
 			'stopped':4,
-			'outro':4
+			'outro':5
 		}
 
 		this.cellY = sprites[this.status]

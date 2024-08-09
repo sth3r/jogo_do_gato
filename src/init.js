@@ -11,7 +11,7 @@ let bgPattern=null
 let x = 0
 let y = 0
 
-let cellWidth = 75		//largura da celular de recorte
+let cellWidth = 98.3		//largura da celular de recorte
 let cellHeight = 93.77	//altura da celula de recorte
 let totalSprites = 4	//Total de sprites
 let goblinSpeed =  0.5 	//Velocidade de troca de sprites (anime)
@@ -53,7 +53,7 @@ const loop = () => {
 			cellHeight, //altura celula recorte
 			goblinPositionX, //posicao X de desenho
 			goblinPositionY, //posicao X de desenho
-			75, 93.77 //draw
+			75, 142.8 //draw
 		)
 
 		requestAnimationFrame(loop)

@@ -1,3 +1,4 @@
+
 import Enemy from "./Enemy"
 import Smile from "./Smile"
 import { keyPress, key } from "./keyboard"
@@ -8,13 +9,13 @@ let CTX
 let CANVAS
 const FRAMES = 60
 
-const qtdEnemies = 5
+const qtdEnemies = 1
 
 let enemies = Array.from({length:qtdEnemies});
 
 const smile = new Smile(300, 100, 20, 5, 'yellow')
 
-const hero = new Hero(600,500,20,5,82,89,'/assets/sprites/cato/gato1.png',FRAMES)
+const hero = new Hero(600,200,20,5,93.77,98.3,'/assets/sprites/cato/gato1.png',FRAMES)
 
 let gameover = false
 let anime;
@@ -45,10 +46,10 @@ const loop = () => {
 
 		CTX.clearRect(0, 0, CANVAS.width, CANVAS.height)
 
-		redCircle(CTX)
+		// redCircle(CTX)
 		
-		smile.move(boundaries, key)
-		smile.draw(CTX)
+		// smile.move(boundaries, key)
+		// smile.draw(CTX)
 
 		hero.move(boundaries, key)
 		hero.draw(CTX)
