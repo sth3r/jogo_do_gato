@@ -13,7 +13,7 @@ const qtdEnemies = 1
 
 let enemies = Array.from({length:qtdEnemies});
 
-const smile = new Smile(300, 100, 20, 5, 'yellow')
+// const smile = new Smile(300, 100, 20, 5, 'yellow')
 
 const hero = new Hero(600,200,20,5,93.77,98.3,'/assets/sprites/cato/gato1.png',FRAMES)
 
