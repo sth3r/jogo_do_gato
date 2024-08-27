@@ -1,70 +1,80 @@
-import Circle from "./geometries/Circle";
-import { loadImage } from "./loaderAssets";
+import Circle from './geometries/Circle'
+import { loadImage } from "./loaderAssets"
 
-export default class Hero extends Circle{
-	//ASSISTIR O VIDEO https://www.youtube.com/watch?v=K-J_OByuEZM
+export default class Hero extends Circle {
 
-
-	constructor(x, y, size, speed = 10, width, height,imgUrl,FRAMES) {
-		super(x, y, size, speed)
-		this.imgUrl = imgUrl
-		loadImage(this.imgUrl).then(img=>{
-			this.img = img
-			this.cellWidth = img.naturalWidth/this.totalSprites
-			console.log('W:'+this.cellWidth)
-		})
-
+	constructor(x, y, velocity = 10, width,height, FRAMES = 60) {
+		super(x, y, 0)
+		loadImage('/assets/sprites/cato/gato1.png').then(img=>this.img = img)
 		
-		this.cellHeight= 142 //altura da sprite/gato maior
+		this.cellWidth = 139,5	//largura da celular de recorte
+		this.cellHeight = 142	//altura da celula de recorte
 		this.cellX = 0
-		this.totalSprites = 4
-		this.spriteSpeed = 1
-		console.log('H:'+this.cellHeight)
+		this.cellY = 0
 		
+		this.totalSprites = 4	//Total de sprites
+		this.spriteSpeed = 0.5
+		this.setSprites()
+		this.controlSprite(FRAMES)
 
 		this.width = width
 		this.height = height
+		this.size = this.width/2
 
+		this.speed = velocity*this.spriteSpeed
 		this.status = 'up'
+		
+		this.showHit = true;
+		this.setHit()
 
-		this.hit = new Circle(
-			this.x + this.width/2,
-			this.y + this.height/2,
-			this.size,
-			0,"rgba(0,0,255,.5)"
-		)
-
-		this.animeSprite(FRAMES)
-		this.setControls()
+		this.setControlsKeys()
 	}
 
-	draw(CTX){
-		this.setCellY()
-
-		CTX.drawImage(
-			this.img,
-			this.cellX * this.cellWidth,
-			this.cellY * this.cellHeight,
-			this.cellWidth,
-			this.cellHeight,
-			this.x,
-			this.y,
-			this.width,
-			this.height
-		)
-		//descomentar para ver a area de hit
-		// this.hit.draw(CTX)
-	}
-
-	animeSprite(FRAMES){ //Controla a animacao do sprite
+	controlSprite(FRAMES){ //Controla a animacao do sprite
 		setInterval(() => {
-			this.cellX = this.cellX < this.totalSprites - 1 
-						 ? this.cellX + 1 
-						 : 0;
+			this.cellX = this.cellX < this.totalSprites - 1 ? this.cellX + 1 : 0;
 		}, 1000 / (FRAMES*this.spriteSpeed/10))
 	}
 
-	setControls(){
+	draw(CTX){
+		this.cellY = this.sprites[this.status];
+
+		CTX.drawImage(
+			this.img,
+			this.cellX * this.cellWidth, //source
+			this.cellY,
+			this.cellWidth,
+			this.cellHeight, //source
+			this.x, //draw
+			this.y,
+			this.width,
+			this.height //draw
+		)
+
+		this.showHit && this.hit.draw(CTX)
+	}
+
+	setHit(){
+		this.hit = new Circle(
+			this.x+this.width/2-50,
+			this.y+this.height/2-50,
+			this.size*.5,5,
+			"rgba(0,0,255,.3)"
+			)
+	}
+
+	setSprites(){
+		this.sprites = {
+			'down': 0,
+			'up': 2,
+			'left': 3,
+			'right': 1,
+			'idle': 4,
+			'dormindo': 5
+		}
+	}
+
+	setControlsKeys(){
 		this.controls = {
 			'ArrowDown':'down',
 			'ArrowUp':'up',
@@ -73,199 +83,36 @@ export default class Hero extends Circle{
 		}
 	}
 
-	setCellY(){
-		let sprites = {
-			'down': 0,
-			'up': 2,
-			'left': 3,
-			'right':1,
-			'stopped':4,
-			'outro':5
+	setMovements(){
+		this.movements = {
+			'down': { y: this.y + this.speed },
+			'up': 	{ y: this.y - this.speed },
+			'left': { x: this.x - this.speed},
+			'right':{ x: this.x + this.speed}
 		}
+	}
 
-		this.cellY = sprites[this.status]
+	update(){
+		this.hit.x=this.x+this.width/2-20
+		this.hit.y=this.y+this.height/2-10
 	}
 
 	move(limits, key) {
+		this.setMovements()
 
-		let movements = {
-			'down': {x: this.x, y: this.y + this.speed},
-			'up': 	{ x: this.x, y: this.y - this.speed },
-			'left': { x: this.x - this.speed, y: this.y },
-			'right': { x: this.x + this.speed, y: this.y },
-			'stopeed': {x:this.x, y:this.y}
-		}
+		this.status = this.controls[key]? this.controls[key] : this.status
 
-		this.status = this.controls[key] ? this.controls[key] : this.status
+		let newx = this.movements[this.status]?.x
+		let newy = this.movements[this.status]?.y
 
-		// if(!stopped==true){
-			
-		// }
+		this.x = newx!=undefined?newx:this.x;
+		this.y = newy!=undefined?newy:this.y;
 
-		this.x = movements[this.status].x
-		this.y = movements[this.status].y
-
-		this.updateHit()
 		this.limits(limits)
-	}
-
-	limits(limits){
-		this.x = this.x - this.size > limits.width 
-							? -this.size 
-							: this.x
-
-		this.x = this.x + this.size < 0 ? limits.width - this.size : this.x
-
-		this.y = this.y - this.size > limits.height+this.size ? -this.size : this.y
-		this.y = this.y + this.size < 0 ? limits.height + this.size : this.y
-	}
-
-	updateHit(){
-		this.hit.x = this.x + this.width/2
-		this.hit.y = this.y + this.height/2
+		this.update()
 	}
 
 	colide(other){
-		return (this.hit.size + other.size >= Math.sqrt(
-			(this.hit.x-other.x)**2 + (this.hit.y-other.y)**2)
-		)
+		return this.hit.colide(other)
 	}
 }
-
-
-// import Circle from "./geometries/Circle";
-// import { loadImage } from "./loaderAssets";
-
-// export default class Hero extends Circle{
-// 	//ASSISTIR O VIDEO https://www.youtube.com/watch?v=K-J_OByuEZM
-
-
-// 	constructor(x, y, size, speed = 10, width, height,imgUrl,FRAMES) {
-// 		super(x, y, size, speed)
-// 		this.imgUrl = imgUrl
-// 		loadImage(this.imgUrl).then(img=>{
-// 			this.img = img
-// 			this.cellWidth = img.naturalWidth/this.totalSprites
-// 			console.log('W:'+this.cellWidth)
-// 		})
-
-		
-// 		this.cellHeight= 142 //altura da sprite/gato maior
-// 		this.cellX = 0
-// 		this.totalSprites = 4
-// 		this.spriteSpeed = 1
-// 		console.log('H:'+this.cellHeight)
-		
-
-// 		this.width = width
-// 		this.height = height
-
-// 		this.status = 'up'
-
-// 		this.hit = new Circle(
-// 			this.x + this.width/2,
-// 			this.y + this.height/2,
-// 			this.size,
-// 			0,"rgba(0,0,255,.5)"
-// 		)
-
-// 		this.animeSprite(FRAMES)
-// 		this.setControls()
-// 	}
-
-// 	draw(CTX){
-// 		this.setCellY()
-
-// 		CTX.drawImage(
-// 			this.img,
-// 			this.cellX * this.cellWidth,
-// 			this.cellY * this.cellHeight,
-// 			this.cellWidth,
-// 			this.cellHeight,
-// 			this.x,
-// 			this.y,
-// 			this.width,
-// 			this.height
-// 		)
-// 		//descomentar para ver a area de hit
-// 		// this.hit.draw(CTX)
-// 	}
-
-// 	animeSprite(FRAMES){ //Controla a animacao do sprite
-// 		setInterval(() => {
-// 			this.cellX = this.cellX < this.totalSprites - 1 
-// 						 ? this.cellX + 1 
-// 						 : 0;
-// 		}, 1000 / (FRAMES*this.spriteSpeed/10))
-// 	}
-
-// 	setControls(){
-// 		this.controls = {
-// 			'ArrowDown':'down',
-// 			'ArrowUp':'up',
-// 			'ArrowLeft':'left',
-// 			'ArrowRight':'right',
-// 		}
-// 	}
-
-// 	setCellY(){
-// 		let sprites = {
-// 			'down': 0,
-// 			'up': 2,
-// 			'left': 3,
-// 			'right':1,
-// 			'stopped':4,
-// 			'outro':5
-// 		}
-
-// 		this.cellY = sprites[this.status]
-// 	}
-
-// 	move(limits, key) {
-
-// 		let movements = {
-// 			'down': {
-// 				x: this.x,
-// 				y: this.y + this.speed 
-// 			},
-// 			'up': 	{ x: this.x, y: this.y - this.speed },
-// 			'left': { x: this.x - this.speed, y: this.y },
-// 			'right': { x: this.x + this.speed, y: this.y },
-// 			'stopeed': {x:this.x, y:this.y}
-// 		}
-
-// 		this.status = this.controls[key] ? this.controls[key] : this.status
-
-// 		// if(!stopped==true){
-			
-// 		// }
-
-// 		this.x = movements[this.status].x
-// 		this.y = movements[this.status].y
-
-// 		this.updateHit()
-// 		this.limits(limits)
-// 	}
-
-// 	limits(limits){
-// 		this.x = this.x - this.size > limits.width 
-// 							? -this.size 
-// 							: this.x
-
-// 		this.x = this.x + this.size < 0 ? limits.width - this.size : this.x
-
-// 		this.y = this.y - this.size > limits.height+this.size ? -this.size : this.y
-// 		this.y = this.y + this.size < 0 ? limits.height + this.size : this.y
-// 	}
-
-// 	updateHit(){
-// 		this.hit.x = this.x + this.width/2
-// 		this.hit.y = this.y + this.height/2
-// 	}
-
-// 	colide(other){
-// 		return (this.hit.size + other.size >= Math.sqrt(
-// 			(this.hit.x-other.x)**2 + (this.hit.y-other.y)**2)
-// 		)
-// 	}
-// }

@@ -1,74 +1,117 @@
 
-import Enemy from "./Enemy"
-import Smile from "./Smile"
 import { keyPress, key } from "./keyboard"
+import Circle from "./geometries/Circle"
+import Smile from "./Smile"
+import Enemy from "./Enemy"
 import Hero from "./Hero"
-import redCircle from "./geometries/redCirc"
+import hud from "./hud"
+import { loadAudio } from "./loaderAssets"
 
-let CTX
-let CANVAS
 const FRAMES = 60
-
-const qtdEnemies = 1
-
-let enemies = Array.from({length:qtdEnemies});
-
-// const smile = new Smile(300, 100, 20, 5, 'yellow')
-
-const hero = new Hero(600,200,20,5,93.77,98.3,'/assets/sprites/cato/gato1.png',FRAMES)
-
-let gameover = false
-let anime;
+const smile = new Smile(300, 100, 20, 5, 'yellow')
+const hero = new Hero(300, 100, 4, 82, 89, FRAMES)
+const tangerine = new Circle(200, 200, 10, 5, 'orange')
+let enemies = Array.from({ length: 3 });
+let ctx
+let canvas
+let gameover
 let boundaries
+let score
+let anime
 
-const init = () => {
+let scoreSound
+let themeSound
+let gameoverSound
+
+const init = async () => {
+	score = 0
+	gameover = false
+
 	console.log("Initialize Canvas")
-	CANVAS = document.querySelector('canvas')
-	CTX = CANVAS.getContext('2d')
-	
+	canvas = document.querySelector('canvas')
+	ctx = canvas.getContext('2d')
+
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
+	hud(ctx, `Carregando... `, "#f00",canvas.height/2-50)
+		
+
+	// scoreSound = await loadAudio('sounds/score.ogg')
+	// scoreSound.volume = .5
+	// gameoverSound = await loadAudio('sounds/gameover.wav')
+	// gameoverSound.volume = .5
+	// themeSound = await loadAudio('sounds/theme.mp3')
+	// themeSound.volume = .3
+	// themeSound.loop = true
+
 	boundaries = {
-		width: CANVAS.width,
-		height: CANVAS.height
+		width: canvas.width,
+		height: canvas.height
 	}
 
-	enemies = enemies.map(i=>new Enemy(
-			Math.random()*CANVAS.width,
-			Math.random()*CANVAS.height,
-			10, 5, 'blue'
-		))
-	
+	enemies = enemies.map(i => new Enemy(
+		Math.random() * canvas.width,
+		Math.random() * canvas.height, 10, 5, 'red')
+	)
+
+	tangerine.restart = () => {
+		tangerine.x = tangerine.size + Math.random() * (boundaries.width - tangerine.size)
+		tangerine.y = tangerine.size + Math.random() * (boundaries.height - tangerine.size)
+	}
+
 	keyPress(window)
-	loop()
+	start()
+}
+
+const start = () =>{
+	let startInterval = setInterval(()=>{
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		hud(ctx, `Pressione ENTER para começar!! `, "#0f0",canvas.height/2-50)
+		console.log(key)
+		if(key=='Enter'){
+			// themeSound.play()
+			clearInterval(startInterval)
+			loop()
+		}
+	},1000)
 }
 
 const loop = () => {
 	setTimeout(() => {
 
-		CTX.clearRect(0, 0, CANVAS.width, CANVAS.height)
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-		// redCircle(CTX)
-		
-		// smile.move(boundaries, key)
-		// smile.draw(CTX)
+		tangerine.draw(ctx)
 
 		hero.move(boundaries, key)
-		hero.draw(CTX)
-		
-		enemies.forEach(e =>{
-			e.move(boundaries, 0) 
-			e.draw(CTX)
-			 //var = teste?verdadeiro:falso;
-			 gameover = !gameover 
-			 		? hero.colide(e)
-					: true;
+		hero.draw(ctx)
+
+		enemies.forEach(e => {
+			e.move(boundaries, 0)
+			e.draw(ctx)
+			gameover = !gameover
+				? hero.colide(e)
+				: true
 		})
-		
-		if (gameover){
+
+		if (smile.colide(tangerine) || hero.colide(tangerine)) {
+			tangerine.restart()
+			console.clear()
+			// scoreSound.play()
+			console.count("PONTOS", ++score)
+		}
+
+		if (gameover) {
 			console.error('DEAD!!!')
+			hud(ctx, `Pontos: ${score}. GAME OVER !! `, "#f00")
+			hud(ctx, `Pressione F5 para reiniciar!`, "#f00",canvas.height/2-50)
+			// gameoverSound.play()
+			// themeSound.pause()
 			cancelAnimationFrame(anime)
-		}else {
+		} else {
+			hud(ctx, `Pontos: ${score}`)
 			anime = requestAnimationFrame(loop)
 		}
+
 	}, 1000 / FRAMES)
 }
 
