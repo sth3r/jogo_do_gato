@@ -43,8 +43,8 @@ const init = async () => {
 	// Create pattern
 	// bgPattern = ctx.createPattern(bgImage, 'repeat');
 
-	// scoreSound = await loadAudio('sounds/score.ogg')
-	// scoreSound.volume = .5
+	scoreSound = await loadAudio('assets/sounds/eating-sound-effect.mp3')
+	scoreSound.volume = .5
 	// debugger;
 	gameoverSound = await loadAudio('assets/sounds/miau-triste.mp3')
 	gameoverSound.volume = .5
@@ -110,7 +110,7 @@ const loop = () => {
 		if (smile.colide(tangerine) || hero.colide(tangerine)) {
 			tangerine.restart()
 			console.clear()
-			// scoreSound.play()
+			scoreSound.play()
 			console.count("PONTOS", ++score)
 		}
 
