@@ -90,7 +90,8 @@ export default class Hero extends Circle {
 			'down': { y: this.y + this.speed },
 			'up': 	{ y: this.y - this.speed },
 			'left': { x: this.x - this.speed},
-			'right':{ x: this.x + this.speed}
+			'right':{ x: this.x + this.speed},
+			'idle':{ x: this.x,  y: this.y},
 		}
 	}
 
@@ -102,7 +103,7 @@ export default class Hero extends Circle {
 	move(limits, key) {
 		this.setMovements()
 
-		this.status = this.controls[key] ? this.controls[key] : this.status
+		this.status = this.controls[key] ? this.controls[key] : 'idle'
 
 		let newx = this.movements[this.status]?.x
 		let newy = this.movements[this.status]?.y
