@@ -4,7 +4,7 @@ import Smile from "./Smile"
 import Enemy from "./Enemy"
 import Hero from "./Hero"
 import hud from "./hud"
-import { loadAudio } from "./loaderAssets"
+import { loadAudio, loadImage } from "./loaderAssets"
 
 const FRAMES = 60
 const smile = new Smile(300, 100, 20, 5, 'yellow')
@@ -22,8 +22,8 @@ let scoreSound
 let themeSound
 let gameoverSound
 
-// let bgImage;
-// let bgPattern;
+let bgImage;
+let bgPattern;
 
 const init = async () => {
 	score = 0
@@ -37,11 +37,12 @@ const init = async () => {
 	hud(ctx, `Carregando... `, "#f00",canvas.height/2-50)
 	
 	// Load the background image
-	// bgImage = await loadImage('assets/Forest/Forest_Tilesett.png');
+	bgImage = await loadImage('assets/Forest/Forest_Tilesett.png');
+	// debugger;
 	// console.log('Background image loaded', bgImage);
 
 	// Create pattern
-	// bgPattern = ctx.createPattern(bgImage, 'repeat');
+	bgPattern = ctx.createPattern(bgImage, 'repeat');
 
 	scoreSound = await loadAudio('assets/sounds/eating-sound-effect.mp3')
 	scoreSound.volume = .5
@@ -86,13 +87,14 @@ const start = () =>{
 
 const loop = () => {
 	setTimeout(() => {
-//        Draw the background image
-//         if (bgPattern) {
-//             ctx.fillStyle = bgPattern;
-//             ctx.fillRect(0, 0, canvas.width, canvas.height);
-//         }
-
 		ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+//        Draw the background image
+		if (bgPattern) {
+			// debugger
+			ctx.fillStyle = bgPattern;
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+		}
 
 		tangerine.draw(ctx)
 
