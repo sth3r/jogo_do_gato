@@ -102,7 +102,7 @@ export default class Hero extends Circle {
 	move(limits, key) {
 		this.setMovements()
 
-		this.status = this.controls[key]? this.controls[key] : this.status
+		this.status = this.controls[key] ? this.controls[key] : this.status
 
 		let newx = this.movements[this.status]?.x
 		let newy = this.movements[this.status]?.y

@@ -45,8 +45,9 @@ const init = async () => {
 
 	// scoreSound = await loadAudio('sounds/score.ogg')
 	// scoreSound.volume = .5
-	// gameoverSound = await loadAudio('sounds/gameover.wav')
-	// gameoverSound.volume = .5
+	// debugger;
+	gameoverSound = await loadAudio('assets/sounds/miau-triste.mp3')
+	gameoverSound.volume = .5
 	// themeSound = await loadAudio('sounds/theme.mp3')
 	// themeSound.volume = .3
 	// themeSound.loop = true
@@ -117,7 +118,7 @@ const loop = () => {
 			console.error('DEAD!!!')
 			hud(ctx, `Pontos: ${score}. GAME OVER !! `, "#f00")
 			hud(ctx, `Pressione F5 para reiniciar!`, "#f00",canvas.height/2-50)
-			// gameoverSound.play()
+			gameoverSound.play()
 			// themeSound.pause()
 			cancelAnimationFrame(anime)
 		} else {
