@@ -36,23 +36,25 @@ export default class Hero extends Circle {
 		}, 1000 / (FRAMES*this.spriteSpeed/10))
 	}
 
-	draw(CTX){
-		this.cellY = this.sprites[this.status];
-
+	draw(CTX) {
+		this.cellY = this.sprites[this.status] * this.cellHeight;
+	
 		CTX.drawImage(
 			this.img,
 			this.cellX * this.cellWidth, //source
-			this.cellY,
+			this.cellY, //source
 			this.cellWidth,
 			this.cellHeight, //source
 			this.x, //draw
 			this.y,
 			this.width,
 			this.height //draw
-		)
-
-		this.showHit && this.hit.draw(CTX)
-	}
+		);
+	
+		if (this.showHit) {
+			this.hit.draw(CTX);
+		}
+	}	
 
 	setHit(){
 		this.hit = new Circle(
