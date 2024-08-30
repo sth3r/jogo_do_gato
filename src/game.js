@@ -49,9 +49,9 @@ const init = async () => {
 	// debugger;
 	gameoverSound = await loadAudio('assets/sounds/miau-triste.mp3')
 	gameoverSound.volume = .5
-	// themeSound = await loadAudio('sounds/theme.mp3')
-	// themeSound.volume = .3
-	// themeSound.loop = true
+	themeSound = await loadAudio('assets/sounds/relaxing-birds-and-piano-music-137153.mp3')
+	themeSound.volume = .3
+	themeSound.loop = true
 
 	boundaries = {
 		width: canvas.width,
@@ -78,7 +78,7 @@ const start = () =>{
 		hud(ctx, `Pressione ENTER para começar!! `, "#0f0",canvas.height/2-50)
 		console.log(key)
 		if(key=='Enter'){
-			// themeSound.play()
+			themeSound.play()
 			clearInterval(startInterval)
 			loop()
 		}
@@ -121,7 +121,7 @@ const loop = () => {
 			hud(ctx, `Pontos: ${score}. GAME OVER !! `, "#f00")
 			hud(ctx, `Pressione F5 para reiniciar!`, "#f00",canvas.height/2-50)
 			gameoverSound.play()
-			// themeSound.pause()
+			themeSound.pause()
 			cancelAnimationFrame(anime)
 		} else {
 			hud(ctx, `Pontos: ${score}`)
