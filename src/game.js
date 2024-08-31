@@ -8,7 +8,7 @@ import { loadAudio, loadImage } from "./loaderAssets"
 
 const FRAMES = 60
 const smile = new Smile(300, 100, 20, 5, 'yellow')
-const hero = new Hero(300, 100, 4, 82, 89, FRAMES)
+const hero = new Hero(700, 500, 4, 82, 89, FRAMES)
 const tangerine = new Circle(200, 200, 10, 5, 'orange')
 let enemies = Array.from({ length: 3 });
 let ctx

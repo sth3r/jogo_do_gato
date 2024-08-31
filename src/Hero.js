@@ -12,7 +12,11 @@ export default class Hero extends Circle {
 		this.cellX = 0
 		this.cellY = 0
 		
-		this.totalSprites = 4	//Total de sprites
+		if(this.movements=='dormindo'){
+			this.totalSprites = 2	//Total de sprites
+		}else{
+			this.totalSprites = 4	//Total de sprites
+		}
 		this.spriteSpeed = 0.5
 		this.setSprites()
 		this.controlSprite(FRAMES)
@@ -91,7 +95,7 @@ export default class Hero extends Circle {
 			'up': 	{ y: this.y - this.speed },
 			'left': { x: this.x - this.speed},
 			'right':{ x: this.x + this.speed},
-			'idle':{ x: this.x,  y: this.y},
+			'dormindo':{ x: this.x,  y: this.y},
 		}
 	}
 
