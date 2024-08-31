@@ -29,6 +29,7 @@ let asset1;
 let asset2;
 let asset3;
 let asset4;
+let asset5;
 
 const init = async () => {
 	score = 0
@@ -47,6 +48,7 @@ const init = async () => {
 	asset2 = await loadImage('assets/Forest/Forest Props-13.png');
 	asset3 = await loadImage('assets/Forest/Forest Props-10.png');
 	asset4 = await loadImage('assets/Forest/Forest Props-08.png');
+	asset5 = await loadImage('assets/Forest/Forest Props-06.png');
 	// debugger;
 	// console.log('Background image loaded', bgImage);
 
@@ -113,13 +115,15 @@ const loop = () => {
 
 		ctx.drawImage(asset1, 33, 71, 204, 416);
 		ctx.drawImage(asset1, 800, 70, 204, 416);
-		ctx.drawImage(asset2, 800, 100, 70,100);
+		ctx.drawImage(asset2, 750, 100, 70,100);
 		ctx.drawImage(asset2, 400, 60, 70,100);
 		ctx.drawImage(asset2, 200, 400, 70,100);
 		ctx.drawImage(asset4, 225, 460, 50,50);
 		ctx.drawImage(asset3, 700, 470, 50,50);
 		ctx.drawImage(asset3, 770, 525, 50,50);
 		ctx.drawImage(asset3, 650, 557, 50,50);
+		ctx.drawImage(asset5, 850, 300, 70,70);
+		ctx.drawImage(asset4, 880, 340, 50,50);
 
 		tangerine.draw(ctx)
 
