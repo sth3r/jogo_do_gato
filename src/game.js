@@ -79,7 +79,7 @@ const init = async () => {
 
 	enemies = enemies.map(i => new Enemy(
 		Math.random() * canvas.width,
-		Math.random() * canvas.height, 10, 5, 'red')
+		Math.random() * canvas.height, 10, 4,'red')
 	)
 
 	tangerine.restart = () => {
