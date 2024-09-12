@@ -8,7 +8,12 @@ import { loadAudio, loadImage } from "./loaderAssets"
 
 const FRAMES = 60
 const smile = new Smile(300, 100, 20, 5, 'yellow')
-const hero = new Hero(700, 500, 4, 82, 89, FRAMES)
+const hero = new Hero(700, 500, 6, 82, 89, FRAMES)
+// let fish;
+let comida;
+// fish = await loadImage('assets/Food-01.png');
+// comida = ctx.drawImage(fish, 200, 200, 10, 5)
+// const comida = ctx.drawImage(fish, 200, 200, 10, 5)
 const tangerine = new Circle(200, 200, 10, 5, 'orange')
 let enemies = Array.from({ length: 3 });
 let ctx
@@ -51,10 +56,12 @@ const init = async () => {
 	asset5 = await loadImage('assets/Forest/Forest Props-06.png');
 	// debugger;
 	// console.log('Background image loaded', bgImage);
+	
+	comida = await loadImage('assets/Food-01.png');
 
 	// Create pattern
 	bgPattern = ctx.createPattern(bgImage, 'repeat');
-	// bgPattern2 = ctx.createPattern(asset1, 'repeat');
+	bgPattern2 = ctx.createPattern(asset1, 'repeat');
 
 	scoreSound = await loadAudio('assets/sounds/eating-sound-effect.mp3')
 	scoreSound.volume = .5
@@ -161,3 +168,16 @@ const loop = () => {
 }
 
 export { init }
+
+tangerine.draw = (ctx) => {
+    const spriteWidth = tangerine.size * 4; 
+    const spriteHeight = tangerine.size * 2; 
+
+    ctx.drawImage(
+        comida, 
+        tangerine.x - spriteWidth / 2, 
+        tangerine.y - spriteHeight / 2, 
+        spriteWidth,
+        spriteHeight  
+    );
+}

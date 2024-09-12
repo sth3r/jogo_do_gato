@@ -28,7 +28,7 @@ export default class Hero extends Circle {
 		this.speed = velocity*this.spriteSpeed
 		this.status = 'up'
 		
-		this.showHit = true;
+		this.showHit = false;
 		this.setHit()
 
 		this.setControlsKeys()
