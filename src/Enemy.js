@@ -3,9 +3,13 @@ import { loadImage } from "./loaderAssets";
 
 export default class Enemy extends Circle{
 	constructor(x, y, size, speed = 10, color = "#00f") {
-		super()
+		super(x, y, size, speed, color)
 		// loadImage('/assets/sprites/red-shroom-run.png').then(img=>this.img = img)
 
+		// this.cellWidth = 139,5	
+		// this.cellHeight = 142	
+		// this.cellX = 0
+		// this.cellY = 0
 		this.x = x;
 		this.y = y;
 		this.size = size;
@@ -16,15 +20,20 @@ export default class Enemy extends Circle{
 	}
 
 	move(limits,key){
-		this.y +=this.speed
+		this.x +=this.speed
 		this.limits(limits)
+		// this.updateAnimation();
 	}
 
 	limits(limits){
 
-		if(this.y - this.size > limits.height+this.size ){
-			this.y = -this.size
-			this.x = Math.random()*limits.width;
+		if(this.x - this.size > limits.width+this.size ){
+			this.x = -this.size
+			this.y = Math.random()*limits.height;
 		}
 	}
+
+	// updateAnimation(){
+
+	// }
 }
