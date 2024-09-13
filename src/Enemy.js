@@ -1,8 +1,11 @@
 import Circle from "./geometries/Circle";
+import { loadImage } from "./loaderAssets";
 
 export default class Enemy extends Circle{
 	constructor(x, y, size, speed = 10, color = "#00f") {
 		super()
+		loadImage('/assets/sprites/red-shroom-run.png').then(img=>this.img = img)
+
 		this.x = x;
 		this.y = y;
 		this.size = size;

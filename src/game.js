@@ -150,6 +150,11 @@ const loop = () => {
 			console.clear()
 			scoreSound.play()
 			console.count("PONTOS", ++score)
+			
+			enemies.forEach(e => {
+				e.speed +=6
+				// console.log(speed)
+			})
 		}
 
 		if (gameover) {
