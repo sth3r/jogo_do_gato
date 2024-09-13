@@ -7,7 +7,8 @@ const hud = (ctx,texto, color = "#00f",y=0)=>{
 	ctx.fillStyle = color;
 	ctx.fillText(texto,
 		ctx.canvas.width / 2 - textMetric.width / 2,
-		y)
+		y);
+	ctx.fontFamily = `BerlinFraktur`;
 }
 
 export default hud

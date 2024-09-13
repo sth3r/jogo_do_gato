@@ -152,20 +152,20 @@ const loop = () => {
 			console.count("PONTOS", ++score)
 			
 			enemies.forEach(e => {
-				e.speed +=6
+				e.speed +=1
 				// console.log(speed)
 			})
 		}
 
 		if (gameover) {
 			console.error('DEAD!!!')
-			hud(ctx, `Pontos: ${score}. GAME OVER !! `, "#f00")
+			hud(ctx, `GAME OVER !! Você comeu porcaria!! Mas parabens pelos ${score} peixes.  `, "#f00")
 			hud(ctx, `Pressione F5 para reiniciar!`, "#f00",canvas.height/2-50)
 			gameoverSound.play()
 			themeSound.pause()
 			cancelAnimationFrame(anime)
 		} else {
-			hud(ctx, `Pontos: ${score}`)
+			hud(ctx, `Peixes: ${score}`)
 			anime = requestAnimationFrame(loop)
 		}
 
